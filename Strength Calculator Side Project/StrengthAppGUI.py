@@ -88,7 +88,7 @@ class MyFrame(Frame):
             reps = int(reps_input.get())
             one_rm = round(weight*(1+(reps/30))) #Implement 1RM equation to calculate users 1RM
             #Display the result of 1 Rep Max
-            result_label = Label(root, text="1 Rep Max is: " + str(one_rm) + " kg")
+            result_label = Label(root, text="1 Rep Max is: " + str(one_rm) + " ibs")
             result_label.grid(row=4)
             weight_input.delete(0,END)
             reps_input.delete(0,END)
