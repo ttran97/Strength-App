@@ -1,5 +1,5 @@
 #Tony Tran 5/20/2022
-#Simple Strength Application Side Project GUI - Completed at 5/20/2022
+#Simple Strength Application Side Project GUI - Completed at 10/02/2023
 from tkinter import * 
 from tkinter import ttk
 #Create a GUI myframe
@@ -7,6 +7,7 @@ class MyFrame(Frame):
     def __init__(self, root):
         Frame.__init__(self, root)
         self.welcome()
+        
 #Clear out widget
     def clear_frame(self):
         for widget in self.winfo_children():
@@ -22,6 +23,8 @@ class MyFrame(Frame):
         self.btn_calculator = Button(self, text="1RM calculator", background= "Light Blue", command =self.strength_calculator).pack()
         self.btn_strengthchart = Button(self, text="Strength 1RM chart", background = "Light Green", command =self.show_strength_chart).pack()
         self.btn_exit=Button(self, text = "Exit Application", background = 'gray', command=self.exit_application).pack()
+
+
         
 #1RM chart 
     def show_strength_chart(self): 
@@ -66,38 +69,41 @@ class MyFrame(Frame):
         values=('11','70%',"1.43"))
         set.insert(parent='',index='end',iid=11,text='',
         values=('12','67%','1.49'))
-        self.btn_exit=Button(self, text = "Go Back", background = 'green', command=self.welcome).pack() 
+        self.btn_exit=Button(self, text = "Go Back", background = 'light green', command=self.welcome).pack() 
         self.btn_exit=Button(self, text = "Exit Application", background = 'gray', command=self.exit_application).pack() 
         
 
 #1RM calculator to see their strength limit
     def strength_calculator(self):
         self.clear_frame()
-        weight_label = Label(root,text="Enter training weight (ibs) here: ", padx=12, pady=10)
+        weight_label = Label(self,text="Enter training weight (ibs) here: ", padx=12, pady=10)
         weight_label.grid(row=2, column=0, sticky=W)
 
-        weight_input = Entry(root)
+        weight_input = Entry(self)
         weight_input.grid(row=2, column=1)
 
-        reps_input = Entry(root)
+        reps_input = Entry(self)
         reps_input.grid(row=3, column=1)
-        reps_label = Label(root,text="Enter your repetitions here: ", padx=12)
+        reps_label = Label(self,text="Enter your repetitions here: ", padx=12)
         reps_label.grid(row=3, column=0, sticky=W)
         def calculate():
             weight = int(weight_input.get())
             reps = int(reps_input.get())
             one_rm = round(weight*(1+(reps/30))) #Implement 1RM equation to calculate users 1RM
             #Display the result of 1 Rep Max
-            result_label = Label(root, text="1 Rep Max is: " + str(one_rm) + " ibs")
+            result_label = Label(self, text="1 Rep Max is: " + str(one_rm) + " ibs")
             result_label.grid(row=4)
             weight_input.delete(0,END)
             reps_input.delete(0,END)
-
+        
         self.btn_exit=Button(self, text = "Exit Application", background = 'gray', command=self.exit_application)
+        self.btn_exit.grid(row=18,column=6) 
+        self.btn_exit=Button(self, text = "Go Back", background = 'light green', command=self.welcome)
         self.btn_exit.grid(row=15,column=6) 
 
-        calculate_button = Button(root,text="Calculate",command=calculate, width=16 )
+        calculate_button = Button(self,text="Calculate",command=calculate, width=16 )
         calculate_button.grid(row=4,column=1,pady=10)
+    
 #Pyhton tkinter frame GUI
 root = Tk() 
 root.title("Strength App")
